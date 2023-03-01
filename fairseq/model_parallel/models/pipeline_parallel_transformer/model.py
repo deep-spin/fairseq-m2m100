@@ -93,8 +93,13 @@ class PipelineParallelTransformerModel(BaseFairseqModel):
                 "encoder and decoder need to be initialized by "
                 + "calling the `prepare_for_inference_()` method"
             )
-            encoder_output_tuple = self.encoder(input)
-            return self.decoder(encoder_output_tuple)
+            src_tokens = src_tokens.to(self.devices[0], non_blocking=True)
+            src_lengths = src_lengths.to(self.devices[0], non_blocking=True)
+            prev_output_tokens = prev_output_tokens.to(self.devices[0], non_blocking=True)
+            encoder_output_tuple = self.encoder(src_tokens, src_lengths)
+            # Add None on return as the caller expects a value that is not used.
+            return self.decoder(prev_output_tokens, encoder_out=encoder_output_tuple), None
+
 
     def prepare_for_inference_(self, cfg):
         if self.encoder is not None and self.decoder is not None:
