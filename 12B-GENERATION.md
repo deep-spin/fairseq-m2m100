@@ -7,7 +7,7 @@ In this document, we provide instructions on how to perform generation with m2m1
 First, start by installing the following dependencies:
 
 ```shell
-pip install "omegaconf==2.1.2" "hydra-core==1.0.0" "antlr4-python3-runtime==4.8" "sentencepiece==0.1.97" "numpy<=1.23" "pandas<1.5" "fairscale"
+pip install "omegaconf==2.1.2" "hydra-core==1.0.0" "antlr4-python3-runtime==4.8" "sentencepiece==0.1.97" "numpy<=1.23" "pandas<1.5" "fairscale" "einops"
 ```
 
 Then install fairseq:
