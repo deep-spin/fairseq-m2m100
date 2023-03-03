@@ -1,0 +1,2 @@
+from fairseq.alti.wrapper import AltiHubInterface
+from fairseq.alti.multilingual_wrapper import AltiMultilingualHubInterface
