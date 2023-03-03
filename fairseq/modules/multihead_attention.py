@@ -160,6 +160,8 @@ class MultiheadAttention(nn.Module):
             # A workaround for quantization to work. Otherwise JIT compilation
             # treats bias in linear module as method.
             and not torch.jit.is_scripting()
+            # This path does not allow for storage of attention values.
+            and False
         ):
             assert key is not None and value is not None
             return F.multi_head_attention_forward(
